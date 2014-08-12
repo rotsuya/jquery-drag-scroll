@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            -webkit-text-size-adjust: 100%;
+        }
+        #canvas {
+            width: 7680px;
+            height: 4320px;
+            background-image: url(svggirl.svg);
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat no-repeat;
+        }
+    </style>
+</head>
+<body>
+<div id="canvas"></div>
+<script src="jquery-2.1.1.min.js"></script>
+<script src="../jquery-drag-scroll.js"></script>
+<script>
+    $(window).dragScroll();
+</script>
+</body>
+</html>
