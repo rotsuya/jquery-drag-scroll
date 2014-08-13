@@ -92,6 +92,16 @@
                             easing: 'easeOut'
                         });
                     }
+                }).on('mouseout', function() {
+                    if (!isMouseDown) {
+                        return;
+                    }
+                    isMouseDown = false;
+                    if (!isDragging) {
+                        return;
+                    }
+                    isDragging = false;
+                    $body.removeClass('dragging');
                 });
             return true;
         });
