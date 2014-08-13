@@ -9,12 +9,10 @@
             scrollDuration: 0.5
         };
         options = $.extend(true, {}, defaults, options);
+        $('<style>').attr('id', 'dragScrollStyle').text('body.dragging { cursor: move !important; }').appendTo('head');
         return this.filter(function() {
-            if (this !== window) {
-                console.error('this isn\'t window.');
-                return false;
-            }
-            var $htmlAndBody = $('html, body');
+            var $bodyAndBody = $('html, body');
+            var $body = $('body');
             var originalClientX = -1;
             var originalClientY = -1;
             var originalScrollX = -1;
@@ -29,8 +27,7 @@
             var last2Time = -1;
             var isMouseDown = false;
             var isDragging = false;
-
-            $('html')
+            $(this)
                 .on('mousedown', function(event) {
                     isMouseDown = true;
                     last2ClientX = last1ClientX;
@@ -60,14 +57,22 @@
                         if (distance < options.dragDistance) {
                             return;
                         }
+                        $body.addClass('dragging');
                         isDragging = true;
                     }
                     currentScrollX = originalScrollX - dX;
                     currentScrollY = originalScrollY - dY;
                     window.scrollTo(currentScrollX, currentScrollY);
                 }).on('mouseup', function(event) {
-                    isMouseDown = isDragging = false;
-
+                    if (!isMouseDown) {
+                        return;
+                    }
+                    isMouseDown = false;
+                    if (!isDragging) {
+                        return;
+                    }
+                    isDragging = false;
+                    $body.removeClass('dragging');
                     var clientX = event.clientX;
                     var clientY = event.clientY;
                     var time = Date.now();
@@ -79,7 +84,7 @@
                     if (velocity > options.dropVelocity) {
                         var targetScrollX = currentScrollX - vX * options.scrollDuration * 0.5;
                         var targetScrollY = currentScrollY - vY * options.scrollDuration * 0.5;
-                        $htmlAndBody.animate({
+                        $bodyAndBody.animate({
                             scrollLeft: targetScrollX,
                             scrollTop: targetScrollY
                         }, {
@@ -87,6 +92,16 @@
                             easing: 'easeOut'
                         });
                     }
+                }).on('mouseout', function() {
+                    if (!isMouseDown) {
+                        return;
+                    }
+                    isMouseDown = false;
+                    if (!isDragging) {
+                        return;
+                    }
+                    isDragging = false;
+                    $body.removeClass('dragging');
                 });
             return true;
         });
