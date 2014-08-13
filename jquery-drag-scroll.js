@@ -64,7 +64,14 @@
                     currentScrollY = originalScrollY - dY;
                     window.scrollTo(currentScrollX, currentScrollY);
                 }).on('mouseup', function(event) {
-                    isMouseDown = isDragging = false;
+                    if (!isMouseDown) {
+                        return;
+                    }
+                    isMouseDown = false;
+                    if (!isDragging) {
+                        return;
+                    }
+                    isDragging = false;
                     $body.removeClass('dragging');
                     var clientX = event.clientX;
                     var clientY = event.clientY;
