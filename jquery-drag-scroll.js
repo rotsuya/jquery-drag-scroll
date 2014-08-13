@@ -27,7 +27,7 @@
             var last2Time = -1;
             var isMouseDown = false;
             var isDragging = false;
-            $('html')
+            $(this)
                 .on('mousedown', function(event) {
                     isMouseDown = true;
                     last2ClientX = last1ClientX;
