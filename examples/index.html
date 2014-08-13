@@ -21,14 +21,49 @@
             background-position: center center;
             background-repeat: no-repeat no-repeat;
         }
+        #button {
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+        #link {
+            position: absolute;
+            left: 400px;
+            top: 200px;
+        }
+        #text {
+            position: absolute;
+            left: 600px;
+            top: 200px;
+        }
+        #selectableText {
+            position: absolute;
+            left: 800px;
+            top: 200px;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
-<div id="canvas"></div>
+<div id="canvas">
+    <button id="button">Button</button>
+    <a href="#" id="link">Link</a>
+    <div id="text">can't select</div>
+</div>
+<div id="selectableText">can select</div>
 <script src="jquery-1.11.1.min.js"></script>
 <script src="../jquery-drag-scroll.js"></script>
 <script>
     $(window).dragScroll();
+</script>
+<script>
+    $('#button').on('click', function() {
+        alert('');
+    });
+    $('#link').on('click', function(event) {
+        alert('');
+        event.preventDefault();
+    });
 </script>
 </body>
 </html>
