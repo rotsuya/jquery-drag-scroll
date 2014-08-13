@@ -41,6 +41,15 @@
             left: 800px;
             top: 200px;
             background-color: white;
+            z-index: 100;
+        }
+        #navbar {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            right: 0px;
+            background-color: white;
+            z-index: 100;
         }
     </style>
 </head>
@@ -51,6 +60,7 @@
     <div id="text">can't select</div>
 </div>
 <div id="selectableText">can select</div>
+<div id="navbar">navbar</div>
 <script src="jquery-1.11.1.min.js"></script>
 <script src="../jquery-drag-scroll.js"></script>
 <script>
