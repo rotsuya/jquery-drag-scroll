@@ -4,7 +4,7 @@
     }
     $.fn.dragScroll = function(options) {
         var defaults = {
-            dragDistance: 20,
+            dragDistance: 10,
             dropVelocity: 200,
             scrollDuration: 0.5
         };
