@@ -11,10 +11,6 @@
         options = $.extend(true, {}, defaults, options);
         $('<style>').attr('id', 'dragScrollStyle').text('body.dragging { cursor: move !important; }').appendTo('head');
         return this.filter(function() {
-            if (this !== window) {
-                console.error('this isn\'t window.');
-                return false;
-            }
             var $bodyAndBody = $('html, body');
             var $body = $('body');
             var originalClientX = -1;
